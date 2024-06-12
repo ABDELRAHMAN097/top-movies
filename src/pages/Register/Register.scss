@@ -1,0 +1,25 @@
+.auth-form{
+    width: 600px;
+    border: 1px solid rgba(0 0 0 / .2);
+    border-radius: 8px;
+    padding: 20px;
+    @media screen and (max-width:767px){
+        width: 300px;
+    }
+}
+.input-group{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 10px;
+}
+.input-group input{
+   padding: 5px 10px;
+   border-radius: 5px !important;
+   border: 1px solid rgba(0 0 0 / .2) ;
+
+}
+.moveTo{
+    color: blue;
+    text-decoration: underline;
+}
