@@ -31,10 +31,10 @@ export default function Nav() {
           <Link className='text-white' to="/">Home</Link>
         </li>
         <li>
-          <Link className='text-white' to="/Items">Contact</Link>
+        <Link className='text-white' to="/MyLibrary"> <CiHeart className='fs-4'/>Favorites</Link>
         </li>
         <li>
-          <Link className='text-white' to="/Items"> <CiHeart className='fs-4'/>My library</Link>
+          <Link className='text-white' to="/Items">Contact</Link>
         </li>
       </div>
       <div className='search-container text-end'>

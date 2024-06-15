@@ -4,5 +4,61 @@
 }
 button{
     color: white !important;
-    
+    display: flex;
+    flex-direction: column;
 }
+.hero{
+    background: url(../../assets/back1.jpg);
+    width: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    box-shadow: 0 10px 10px -5px rgb(0, 2, 27);
+}
+.nav{
+  position: relative;
+  z-index: 1;
+}
+.avatar{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    z-index: 4;
+}
+.avatar-container {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 90vh;
+    width: 300px !important;
+    z-index: 4;
+  }
+  .react-parallax-bgimage{
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    bottom: 0;
+    transform: translateY(-50%, -7.31696px, 0px);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    height: auto;
+    width: 500px !important;
+    filter: none;
+    @media screen and (max-width : 767px) {
+    width: 300px !important;
+    height: 709px !important;
+    bottom: -70 !important;
+    }
+  }
+  .filter{
+    position: relative;
+    z-index: 5;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    width: 80%;
+    height: 70px;
+    background-color: rgba(0, 136, 255, 0.301);
+  }

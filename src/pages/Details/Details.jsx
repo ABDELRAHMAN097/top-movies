@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./Details.scss";
 import { WOW } from "wowjs";
+import Nav from "../../Nav/Nav";
 
 export default function Details() {
   useEffect(() => {
@@ -41,13 +42,16 @@ export default function Details() {
   }
 
   return (
-    <div
-      className="movie-details"
+   <div className="w-100">
+          <Nav />
+
+     <div
+      className="movie-details w-100"
       style={{
         backgroundImage: `url(https://image.tmdb.org/t/p/w500${movie.backdrop_path})`,
       }}
     >
-      <div className="container">
+      <div className="container w-100">
         <div className="row py-3">
           <div className="box-left p-0 col-lg-6 col-md-12 wow animate__animated animate__fadeInUpBig animate__slow 1s">
             <strong className="rating-details"> {movie.vote_average.toFixed(1)} </strong>
@@ -66,5 +70,6 @@ export default function Details() {
         </div>
       </div>
     </div>
+   </div>
   );
 }

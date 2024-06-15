@@ -1,31 +1,41 @@
-import React from 'react';
-import HomePage from "./pages/HomePage/HomePage.jsx"
-import Item from './pages/Items/Items.js'
-import { Route, Routes, BrowserRouter, Outlet } from "react-router-dom";
-import Nav from "./Nav/Nav.jsx";
+import React, { useState } from 'react';
+import { BrowserRouter, Route, Routes, Outlet } from 'react-router-dom';
+import HomePage from "./pages/HomePage/HomePage.jsx";
+import Item from './pages/Items/Items.js';
 import Details from "./pages/Details/Details.jsx";
 import TopRatedMovies from "./Components/TopRatedMovies/TopRatedMovies.jsx";
 import UpcomingMovies from "./Components/UpcomingMovies/UpcomingMovies.jsx";
 import PopularMovies from "./Components/PopularMovies/PopularMovies.jsx";
 import NowPlayingMovies from "./Components/NowPlayingMovies/NowPlayingMovies.jsx";
+import MyLibrary from './pages/MyLibrary/MyLibrary.jsx';
 
 function App() {
-  
+  const [favorites, setFavorites] = useState([]);
+
+  const toggleFavorite = (movie) => {
+    setFavorites((prevFavorites) => {
+      if (prevFavorites.find(fav => fav.id === movie.id)) {
+        return prevFavorites.filter(fav => fav.id !== movie.id);
+      } else {
+        return [...prevFavorites, movie];
+      }
+    });
+  };
+
   return (
     <div className="App">
       <BrowserRouter>
-       <Nav/>
+        
         <Routes>
-          <Route path="/">
-            <Route index element={<HomePage/>} />
-            <Route path="Items" element={<Item />} />
-            <Route path="/TopRatedMovies" element={<TopRatedMovies/>} />
-            <Route path="/UpcomingMovies" element={<UpcomingMovies/>} />
-            <Route path="/PopularMovies" element={<PopularMovies/>} />
-            <Route path="/NowPlayingMovies" element={<NowPlayingMovies/>} />
-            <Route path="/movie/:id" element={<Details/>} />
-            <Route path="*" element={"Page 404"} />
-          </Route>
+          <Route path="/" element={<HomePage />} />
+          <Route path="Items" element={<Item />} />
+          <Route path="MyLibrary" element={<MyLibrary favorites={favorites} toggleFavorite={toggleFavorite} />} />
+          <Route path="TopRatedMovies" element={<TopRatedMovies />} />
+          <Route path="UpcomingMovies" element={<UpcomingMovies favorites={favorites} toggleFavorite={toggleFavorite} />} />
+          <Route path="PopularMovies" element={<PopularMovies />} />
+          <Route path="NowPlayingMovies" element={<NowPlayingMovies />} />
+          <Route path="movie/:id" element={<Details />} />
+          <Route path="*" element={"Page 404"} />
         </Routes>
         <Outlet />
       </BrowserRouter>
@@ -34,9 +44,3 @@ function App() {
 }
 
 export default App;
-
-
-// axios("http://localhost:3000/users").then((data) => console.log(data.data))
-// axios.post("http://localhost:3000/users" , {name:"roro"}).then((data) => console.log(data.data))
-
-
