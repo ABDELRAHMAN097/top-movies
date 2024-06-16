@@ -1,8 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './MyLibrary.scss';
+import { useRecoilState } from 'recoil';
+import { favoriteMoviesState } from '../../Store/Fave';
+export default function MyLibrary() {
 
-export default function MyLibrary({ toggleFavorite, favorites }) {
+  const [favorites, setFavorites] = useRecoilState(favoriteMoviesState);
+  const toggleFavorite = (movie) => {
+    setFavorites(prevFavorites => {
+      if (prevFavorites.some(fav => fav.id === movie.id)) {
+        return prevFavorites.filter(fav => fav.id !== movie.id);
+      } else {
+        return [...prevFavorites, movie];
+      }
+    });
+  };
+
   return (
     <div className="container pt-3">
       <h3 className="pb-3">Favorite Movies</h3>
@@ -22,7 +35,7 @@ export default function MyLibrary({ toggleFavorite, favorites }) {
                   <Link to={`/movie/${movie.id}`}>
                     <button className='w-100 btn btn-primary'>details</button>
                   </Link>
-                  <button className='btn btn-secondary mt-2' onClick={() => toggleFavorite(movie)}>
+                  <button className='btn btn-secondary mt-2' >
                     Remove from Favorites
                   </button>
                 </div>

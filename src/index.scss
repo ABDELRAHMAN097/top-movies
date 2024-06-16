@@ -88,12 +88,21 @@ body {
   background-color: transparent !important;
   border: none !important;
 }
+.card{
+  padding: 0 !important;
+}
 a{
   text-decoration: none ;
 }
 .card-info {
   position: relative; 
   z-index: 1;
+}
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
 }
 .rating {
   position: absolute;

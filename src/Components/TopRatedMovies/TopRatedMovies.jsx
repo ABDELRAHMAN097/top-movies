@@ -6,11 +6,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
+import { favoriteMoviesState } from '../../Store/Fave';
+import { useRecoilState } from 'recoil';
 
 export default function TopRatedMovies() {
   const [topRatedMovies, setTopRatedMovies] = useState([]);
   const [showAll, setShowAll] = useState(false);
+  const [favorites, setFavorites] = useRecoilState(favoriteMoviesState);
   const jwtToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMWJlZTViMGFiMmU1Y2Y2MmVjNzc3ZThkYjYwNTdmZSIsInN1YiI6IjY2NTVjNThlMzJjNGIwNTM1NWEzNmE5ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.jFE5NZQk4EhObnSNIoVFWftCLNoLO7OOsc-z7baeZ7Y";
   const baseUrl = "https://api.themoviedb.org/3";
 
@@ -42,9 +44,19 @@ export default function TopRatedMovies() {
 
   const filteredMovies = showAll ? topRatedMovies : topRatedMovies.slice(0, 7);
 
+  
+  const toggleFavorite = (movie) => {
+    setFavorites(prevFavorites => {
+      if (prevFavorites.some(fav => fav.id === movie.id)) {
+        return prevFavorites.filter(fav => fav.id !== movie.id);
+      } else {
+        return [...prevFavorites, movie];
+      }
+    });
+  };
   return (
     <div className="container pt-3">
-      <h3 className="pb-3">Top Rated Movies</h3>
+      <h3 className="py-3">Top Rated Movies</h3>
       {!showAll ? (
         <Swiper 
           slidesPerView={5} 
@@ -93,9 +105,14 @@ export default function TopRatedMovies() {
                     <div className="card-body text-center">
                       <p className='rating'>{movie.vote_average.toFixed(1)}</p>
                       <h5 className="card-title pt-2">{movie.title}</h5>
-                      <Link to={`/movie/${movie.id}`}>
-                       <button className='w-100 btn btn-primary'>details</button>
+                      <div className='button-container'>
+                    <Link to={`/movie/${movie.id}`}>
+                      <button className='btn btn-success'>details</button>
                     </Link>
+                    <button className='btn btn-danger' onClick={() => toggleFavorite(movie)}>
+                      {favorites.some(fav => fav.id === movie.id) ? 'Unlike' : 'Like'}
+                    </button>
+                    </div>
                     </div>
                   </div>
                
@@ -119,9 +136,14 @@ export default function TopRatedMovies() {
                   <div className="card-body text-center">
                     <p className='rating'>{movie.vote_average.toFixed(1)}</p>
                     <h5 className="card-title  pt-2">{movie.title}</h5>
+                    <div className='button-container'>
                     <Link to={`/movie/${movie.id}`}>
-                       <button className='w-100 btn btn-primary'>details</button>
+                      <button className='btn btn-success'>details</button>
                     </Link>
+                    <button className='btn btn-danger' onClick={() => toggleFavorite(movie)}>
+                      {favorites.some(fav => fav.id === movie.id) ? 'Unlike' : 'Like'}
+                    </button>
+                    </div>
                   </div>
                 </div>
              

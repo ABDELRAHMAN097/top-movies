@@ -6,10 +6,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import "./Upcoming.scss"
+import { favoriteMoviesState } from '../../Store/Fave';
+import { useRecoilState } from 'recoil';
 
-export default function UpcomingMovies({ toggleFavorite, favorites }) {
+export default function UpcomingMovies() {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [showAll, setShowAll] = useState(false);
+  const [favorites, setFavorites] = useRecoilState(favoriteMoviesState);
   const jwtToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMWJlZTViMGFiMmU1Y2Y2MmVjNzc3ZThkYjYwNTdmZSIsInN1YiI6IjY2NTVjNThlMzJjNGIwNTM1NWEzNmE5ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.jFE5NZQk4EhObnSNIoVFWftCLNoLO7OOsc-z7baeZ7Y';
   const baseUrl = 'https://api.themoviedb.org/3';
   const upcomingMoviesEndpoint = `${baseUrl}/movie/upcoming`;
@@ -40,9 +44,19 @@ export default function UpcomingMovies({ toggleFavorite, favorites }) {
 
   const filteredMovies = showAll ? upcomingMovies.filter((_, index) => index !== 17) : upcomingMovies.slice(0, 7);
 
+  const toggleFavorite = (movie) => {
+    setFavorites(prevFavorites => {
+      if (prevFavorites.some(fav => fav.id === movie.id)) {
+        return prevFavorites.filter(fav => fav.id !== movie.id);
+      } else {
+        return [...prevFavorites, movie];
+      }
+    });
+  };
+
   return (
     <div className="container pt-3">
-      <h3 className="pb-3">Upcoming Movies</h3>
+      <h3 className="py-3">Upcoming Movies</h3>
       {!showAll ? (
         <Swiper
           slidesPerView={5}
@@ -87,15 +101,17 @@ export default function UpcomingMovies({ toggleFavorite, favorites }) {
                     className="card-img-top"
                     alt={movie.title}
                   />
-                  <div className="card-body text-center">
+                  <div className="card-body text-center w-100">
                     <p className='rating'>{movie.vote_average.toFixed(1)}</p>
                     <h5 className="card-title pt-2">{movie.title}</h5>
+                    <div className='button-container'>
                     <Link to={`/movie/${movie.id}`}>
-                      <button className='w-100 btn btn-primary'>details</button>
+                      <button className='btn btn-success'>details</button>
                     </Link>
-                    <button className='btn btn-secondary mt-2' onClick={() => toggleFavorite(movie)}>
-                      {favorites && favorites.find(fav => fav.id === movie.id) ? 'Remove from Favorites' : 'Add to Favorites'}
+                     <button className='btn btn-danger' onClick={() => toggleFavorite(movie)}>
+                      {favorites.some(fav => fav.id === movie.id) ? 'Unlike' : 'Like'}
                     </button>
+                    </div>
                   </div>
                 </div>
               </SwiperSlide>
@@ -117,12 +133,14 @@ export default function UpcomingMovies({ toggleFavorite, favorites }) {
                 <div className="card-body text-center">
                   <p className='rating'>{movie.vote_average.toFixed(1)}</p>
                   <h5 className="card-title pt-2">{movie.title}</h5>
-                  <Link to={`/movie/${movie.id}`}>
-                    <button className='w-100 btn btn-primary'>details</button>
-                  </Link>
-                  <button className='btn btn-secondary mt-2' onClick={() => toggleFavorite(movie)}>
-                    {favorites && favorites.find(fav => fav.id === movie.id) ? 'Remove from Favorites' : 'Add to Favorites'}
-                  </button>
+                  <div className='button-container'>
+                    <Link to={`/movie/${movie.id}`}>
+                      <button className='btn btn-success'>details</button>
+                    </Link>
+                    <button className='btn btn-danger' onClick={() => toggleFavorite(movie)}>
+                      {favorites.some(fav => fav.id === movie.id) ? 'Unlike' : 'Like'}
+                    </button>
+                    </div>
                 </div>
               </div>
             </div>
