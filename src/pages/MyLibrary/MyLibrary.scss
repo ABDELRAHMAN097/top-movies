@@ -13,9 +13,9 @@ button {
   }
   
   .film-card {
-    height: 100%; /* لضمان أن يكون طول الكاردات متساويًا */
-    border: none; /* إزالة الحدود إذا كانت موجودة */
-    box-shadow: none; /* إزالة الظل إذا كان موجودًا */
+    height: 100%;
+    border: none;
+    box-shadow: none;
   }
   
   .film-card img {
@@ -28,26 +28,26 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: none; /* إزالة الخلفية */
+    background: none; 
   }
   
   .card-body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    background: none; /* إزالة الخلفية */
+    background: none; 
   }
   
   .rating {
     font-size: 1.2em;
     font-weight: bold;
-    margin-bottom: 10px; /* إضافة مساحة بين التقييم والعنوان */
+    margin-bottom: 10px;
   }
   
   .card-title {
     margin-top: 10px;
     font-size: 1.1em;
-    margin-bottom: 20px; /* إضافة مساحة بين العنوان والأزرار */
+    margin-bottom: 20px;
   }
   
   .card-info {
@@ -55,7 +55,7 @@ button {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    background: none; /* إزالة الخلفية */
+    background: none; 
   }
   
   .d-flex {
