@@ -56,7 +56,11 @@ export default function UpcomingMovies() {
 
   return (
     <div className="container pt-3">
-      <h3 className="py-3">Upcoming Movies</h3>
+     <div className='d-flex align-items-center gap-2 my-3'>
+     <Link className='fs-3 text-white' to="/">Home</Link>
+      <span className='fs-3 '>/</span>
+      <h3>Upcoming Movies</h3>
+     </div>
       {!showAll ? (
         <Swiper
           slidesPerView={5}
@@ -94,8 +98,8 @@ export default function UpcomingMovies() {
         >
           {Array.isArray(upcomingMovies) && upcomingMovies.length > 0 ? (
             filteredMovies.map(movie => (
-              <SwiperSlide className='col-6 col-sm-4 col-md-2 mb-4' key={movie.id}>
-                <div className="card card-info wow animate__animated animate__fadeInUpBig">
+              <SwiperSlide className='h-auto col-6 col-sm-4 col-md-2 mb-4' key={movie.id}>
+                <div className=" wow animate__animated animate__fadeInUpBig">
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     className="card-img-top"
@@ -124,7 +128,7 @@ export default function UpcomingMovies() {
         <div className="row">
           {filteredMovies.map(movie => (
             <div className='col-6 col-sm-4 col-md-2 mb-4' key={movie.id}>
-              <div className="card card-info h-100">
+              <div>
                 <img
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                   className="card-img-top"
@@ -132,7 +136,7 @@ export default function UpcomingMovies() {
                 />
                 <div className="card-body text-center">
                   <p className='rating'>{movie.vote_average.toFixed(1)}</p>
-                  <h5 className="card-title pt-2">{movie.title}</h5>
+                  <h5 className="card-title pt-2 my-3">{movie.title}</h5>
                   <div className='button-container'>
                     <Link to={`/movie/${movie.id}`}>
                       <button className='btn btn-success'>details</button>

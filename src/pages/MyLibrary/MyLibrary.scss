@@ -1,0 +1,80 @@
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px !important;
+  }
+  .btn-primary{
+    padding: 3px !important; 
+  }
+  
+  .found {
+    color: rgba(240, 248, 255, 0.438);
+  }
+  
+  .film-card {
+    height: 100%; /* لضمان أن يكون طول الكاردات متساويًا */
+    border: none; /* إزالة الحدود إذا كانت موجودة */
+    box-shadow: none; /* إزالة الظل إذا كان موجودًا */
+  }
+  
+  .film-card img {
+    height: 260px;
+    object-fit: cover;
+  }
+  
+  .info {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: none; /* إزالة الخلفية */
+  }
+  
+  .card-body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: none; /* إزالة الخلفية */
+  }
+  
+  .rating {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px; /* إضافة مساحة بين التقييم والعنوان */
+  }
+  
+  .card-title {
+    margin-top: 10px;
+    font-size: 1.1em;
+    margin-bottom: 20px; /* إضافة مساحة بين العنوان والأزرار */
+  }
+  
+  .card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    background: none; /* إزالة الخلفية */
+  }
+  
+  .d-flex {
+    display: flex;
+  }
+  
+  .flex-column {
+    flex-direction: column;
+  }
+  
+  .align-items-center {
+    align-items: center;
+  }
+  
+  .gap-3 {
+    gap: 1rem;
+  }
+  
+  .mt-auto {
+    margin-top: auto;
+  }
+    

@@ -54,7 +54,11 @@ export default function NowPlayingMovies() {
   };
   return (
     <div className="container pt-3">
-      <h3 className="py-3">Now Playing Movies</h3>
+       <div className='d-flex align-items-center gap-2 my-3'>
+     <Link className='fs-3 text-white' to="/">Home</Link>
+      <span className='fs-3 '>/</span>
+      <h3>Now Playing Movies</h3>
+     </div>
       {!showAll ? (
         <Swiper 
           slidesPerView={5} 
