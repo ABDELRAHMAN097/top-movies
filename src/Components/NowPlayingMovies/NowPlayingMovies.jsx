@@ -8,6 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { favoriteMoviesState } from '../../Store/Fave';
 import { useRecoilState } from 'recoil';
+import { WOW } from "wowjs";
 
 export default function NowPlayingMovies() {
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
@@ -16,6 +17,7 @@ export default function NowPlayingMovies() {
   const jwtToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMWJlZTViMGFiMmU1Y2Y2MmVjNzc3ZThkYjYwNTdmZSIsInN1YiI6IjY2NTVjNThlMzJjNGIwNTM1NWEzNmE5ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.jFE5NZQk4EhObnSNIoVFWftCLNoLO7OOsc-z7baeZ7Y';
   const baseUrl = 'https://api.themoviedb.org/3';
   const nowPlayingMoviesEndpoint = `${baseUrl}/movie/now_playing`;
+  
 
   useEffect(() => {
     const fetchMovies = async (endpoint, setter) => {
@@ -52,9 +54,13 @@ export default function NowPlayingMovies() {
       }
     });
   };
+  useEffect(() => {
+    const wow = new WOW({ live: false });
+    wow.init();
+  }, []);
   return (
     <div className="container pt-3">
-       <div className='d-flex align-items-center gap-2 my-3'>
+       <div className='d-flex align-items-center gap-2 my-3 wow animate__animated animate__jello animate__delay-1s 1s	animate__slow	0.5s'>
      <Link className='fs-3 text-white' to="/">Home</Link>
       <span className='fs-3 '>/</span>
       <h3>Now Playing Movies</h3>
@@ -104,7 +110,7 @@ export default function NowPlayingMovies() {
                   alt={movie.title}
                 />
                 <div className="card-body text-center w-100">
-                  <p className='rating'>{movie.vote_average.toFixed(1)}</p>
+                  <p className='rating p-3'>{movie.vote_average.toFixed(1)}</p>
                   <h5 className="card-title pt-2">{movie.title}</h5>
                   <div className='button-container'>
                   <Link to={`/movie/${movie.id}`}>
@@ -134,7 +140,7 @@ export default function NowPlayingMovies() {
                 alt={movie.title} 
               />
               <div className="card-body text-center">
-                <p className='rating'>{movie.vote_average.toFixed(1)}</p>
+                <p className='rating p-3'>{movie.vote_average.toFixed(1)}</p>
                 <h5 className="card-title fs-6 w-100 text-center pt-2">{movie.title}</h5>
                 <div className='button-container'>
                 <Link to={`/movie/${movie.id}`}>

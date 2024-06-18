@@ -9,6 +9,7 @@ import 'swiper/css/pagination';
 import "./Upcoming.scss"
 import { favoriteMoviesState } from '../../Store/Fave';
 import { useRecoilState } from 'recoil';
+import { WOW } from "wowjs";
 
 export default function UpcomingMovies() {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
@@ -53,10 +54,14 @@ export default function UpcomingMovies() {
       }
     });
   };
+  useEffect(() => {
+    const wow = new WOW({ live: false });
+    wow.init();
+  }, []);
 
   return (
     <div className="container pt-3">
-     <div className='d-flex align-items-center gap-2 my-3'>
+     <div className='d-flex align-items-center gap-2 my-3 wow animate__animated animate__jello animate__delay-1s 1s	animate__slow	0.5s'>
      <Link className='fs-3 text-white' to="/">Home</Link>
       <span className='fs-3 '>/</span>
       <h3>Upcoming Movies</h3>
@@ -64,7 +69,7 @@ export default function UpcomingMovies() {
       {!showAll ? (
         <Swiper
           slidesPerView={5}
-          spaceBetween={30}
+          spaceBetween={10}
           loop={true}
           autoplay={{
             delay: 2500,
@@ -99,26 +104,26 @@ export default function UpcomingMovies() {
           {Array.isArray(upcomingMovies) && upcomingMovies.length > 0 ? (
             filteredMovies.map(movie => (
               <SwiperSlide className='h-auto col-6 col-sm-4 col-md-2 mb-4' key={movie.id}>
-                <div className=" wow animate__animated animate__fadeInUpBig">
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    className="card-img-top"
-                    alt={movie.title}
-                  />
-                  <div className="card-body text-center w-100">
-                    <p className='rating'>{movie.vote_average.toFixed(1)}</p>
-                    <h5 className="card-title pt-2">{movie.title}</h5>
-                    <div className='button-container'>
-                    <Link to={`/movie/${movie.id}`}>
-                      <button className='btn btn-success'>details</button>
-                    </Link>
-                     <button className='btn btn-danger' onClick={() => toggleFavorite(movie)}>
-                      {favorites.some(fav => fav.id === movie.id) ? 'Unlike' : 'Like'}
-                    </button>
-                    </div>
+              <div className="card card-info wow animate__animated animate__fadeInUpBig">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  className="card-img-top"
+                  alt={movie.title}
+                />
+                <div className="card-body text-center w-100">
+                  <p className='rating p-3'>{movie.vote_average.toFixed(1)}</p>
+                  <h5 className="card-title pt-2">{movie.title}</h5>
+                  <div className='button-container'>
+                  <Link to={`/movie/${movie.id}`}>
+                    <button className='btn btn-success'>details</button>
+                  </Link>
+                   <button className='btn btn-danger' onClick={() => toggleFavorite(movie)}>
+                    {favorites.some(fav => fav.id === movie.id) ? 'Unlike' : 'Like'}
+                  </button>
                   </div>
                 </div>
-              </SwiperSlide>
+              </div>
+            </SwiperSlide>
             ))
           ) : (
             <p>No movies found.</p>
@@ -136,7 +141,7 @@ export default function UpcomingMovies() {
                 alt={movie.title} 
               />
               <div className="card-body text-center">
-                <p className='rating'>{movie.vote_average.toFixed(1)}</p>
+                <p className='rating p-3'>{movie.vote_average.toFixed(1)}</p>
                 <h5 className="card-title fs-6 w-100 text-center pt-2">{movie.title}</h5>
                 <div className='button-container'>
                 <Link to={`/movie/${movie.id}`}>

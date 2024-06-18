@@ -173,7 +173,8 @@ padding: 0 10px !important;
 .rating {
   font-size: 1.2em;
   font-weight: bold;
-  margin-bottom: 10px; /* إضافة مساحة بين التقييم والعنوان */
+  margin-bottom: 10px; 
+  padding: 10px;
 }
 
 .card-title {
@@ -212,6 +213,13 @@ padding: 0 10px !important;
 .mt-auto {
   margin-top: auto;
 }
-// .card-img-top{
-//   height: 260px !important;
-// }
+
+.found {
+  color: rgba(240, 248, 255, 0.438);
+}
+.btn-success , .btn-danger{
+  @media screen and (max-width : 767px) {
+    padding: 2px !important;
+    font-size: 14px !important;
+  }
+}

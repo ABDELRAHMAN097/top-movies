@@ -8,6 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { favoriteMoviesState } from '../../Store/Fave';
 import { useRecoilState } from 'recoil';
+import { WOW } from "wowjs";
 
 export default function PopularMovies() {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -53,9 +54,14 @@ export default function PopularMovies() {
     });
   };
 
+  useEffect(() => {
+    const wow = new WOW({ live: false });
+    wow.init();
+  }, []);
+
   return (
     <div className="container pt-3">
-       <div className='d-flex align-items-center gap-2 my-3'>
+       <div className='d-flex align-items-center gap-2 my-3 wow animate__animated animate__jello animate__delay-1s 1s	animate__slow	0.5s'>
      <Link className='fs-3 text-white' to="/">Home</Link>
       <span className='fs-3 '>/</span>
       <h3>Popular Movies</h3>
@@ -106,7 +112,7 @@ export default function PopularMovies() {
                   alt={movie.title}
                 />
                 <div className="card-body text-center w-100">
-                  <p className='rating'>{movie.vote_average.toFixed(1)}</p>
+                  <p className='rating p-3'>{movie.vote_average.toFixed(1)}</p>
                   <h5 className="card-title pt-2">{movie.title}</h5>
                   <div className='button-container'>
                   <Link to={`/movie/${movie.id}`}>
@@ -135,7 +141,7 @@ export default function PopularMovies() {
                 alt={movie.title}
               />
               <div className=" text-center d-flex flex-column">
-                <p className='rating'>{movie.vote_average.toFixed(1)}</p>
+                <p className='rating p-3'>{movie.vote_average.toFixed(1)}</p>
                 <div className='info w-100 d-flex flex-column justify-content-between flex-grow-1'>
                   <h5 className="card-title pt-2">{movie.title}</h5>
                   <div className='d-flex align-items-center gap-3 mt-auto'>

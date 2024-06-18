@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.scss';
 import UpcomingMovies from '../../Components/UpcomingMovies/UpcomingMovies';
 import PopularMovies from '../../Components/PopularMovies/PopularMovies';
@@ -11,14 +11,14 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { favoriteMoviesState } from '../../Store/Fave';
 import { useRecoilState } from 'recoil';
-
+import { WOW } from "wowjs";
 
 export default function HomePage() {
   const [favorites, setFavorites] = useRecoilState(favoriteMoviesState);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState(null); // State to handle errors
-const apiKey = "11bee5b0ab2e5cf62ec777e8db6057fe"
+  const apiKey = "11bee5b0ab2e5cf62ec777e8db6057fe"
 
   const handleSearch = async () => {
     try {
@@ -51,6 +51,10 @@ const apiKey = "11bee5b0ab2e5cf62ec777e8db6057fe"
     });
   };
 
+  useEffect(() => {
+    const wow = new WOW({ live: false });
+    wow.init();
+  }, []);
   return (
     <div className="home text-start w-100">
       <div className='hero w-100 text-center'>
@@ -65,24 +69,24 @@ const apiKey = "11bee5b0ab2e5cf62ec777e8db6057fe"
           </div>
         </Parallax>
         <div className='filter w-100'>
-          <Link to="/UpcomingMovies"> 
-            <button className='btn btn-primary'>Upcoming</button>
+          <Link to="/UpcomingMovies">  
+            <button className='btn btn-primary wow animate__animated  animate__bounceInDown animate__delay-1s	1s'>Upcoming</button>
           </Link>
           <Link to="/PopularMovies"> 
-            <button className='btn btn-primary'>Popular</button>
+            <button className='btn btn-primary wow animate__animated  animate__bounceInDown animate__delay-2s	2s'>Popular</button>
           </Link>
-          <Link to="/TopRatedMovies"> 
-            <button className='btn btn-primary'>TopRated</button>
+          <Link to="/TopRatedMovies">
+            <button className='btn btn-primary wow animate__animated  animate__bounceInDown animate__delay-3s 3s'>TopRated</button>
           </Link>
           <Link to="/NowPlayingMovies"> 
-            <button className='btn btn-primary'>NowPlaying</button>
+            <button className='btn btn-primary wow animate__animated  animate__bounceInDown animate__delay-2s	2s'>NowPlaying</button>
           </Link>
         </div>
       </div>
 
       <div className="container w-100 p-0 mt-5">
         <div className="container pt-3">
-          <h2 className="my-3">Search Movies</h2>
+          <h2 className="my-3 wow animate__animated animate__jello animate__delay-1s 1s	animate__slow	0.5s">Search Movies</h2>
           <div className="input-group mb-3">
             <input
               type="text"
@@ -126,7 +130,7 @@ const apiKey = "11bee5b0ab2e5cf62ec777e8db6057fe"
         </div>
               ))
             ) : (
-              <p>No movies found.</p>
+              <p className='found'>No movies found.</p>
             )}
           </div>
         </div>
