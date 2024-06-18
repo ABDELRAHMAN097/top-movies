@@ -98,29 +98,27 @@ export default function PopularMovies() {
         >
           {Array.isArray(popularMovies) && popularMovies.length > 0 ? (
             filteredMovies.map(movie => (
-              <SwiperSlide key={movie.id}>
-               
-                  <div className="card card-info wow animate__animated animate__fadeInUpBig">
-                    <img 
-                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
-                      className="card-img-top" 
-                      alt={movie.title} 
-                    />
-                    <div className="card-body text-center">
-                      <p className='rating'>{movie.vote_average.toFixed(1)}</p>
-                      <h5 className="card-title fs-6 w-100 text-center pt-2">{movie.title}</h5>
-                      <div className='button-container'>
-                    <Link to={`/movie/${movie.id}`}>
-                      <button className='btn btn-success'>details</button>
-                    </Link>
-                    <button className='btn btn-danger' onClick={() => toggleFavorite(movie)}>
-                      {favorites.some(fav => fav.id === movie.id) ? 'Unlike' : 'Like'}
-                    </button>
-                    </div>
-                    </div>
+              <SwiperSlide className='h-auto col-6 col-sm-4 col-md-2 mb-4' key={movie.id}>
+              <div className="card card-info wow animate__animated animate__fadeInUpBig">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  className="card-img-top"
+                  alt={movie.title}
+                />
+                <div className="card-body text-center w-100">
+                  <p className='rating'>{movie.vote_average.toFixed(1)}</p>
+                  <h5 className="card-title pt-2">{movie.title}</h5>
+                  <div className='button-container'>
+                  <Link to={`/movie/${movie.id}`}>
+                    <button className='btn btn-success'>details</button>
+                  </Link>
+                   <button className='btn btn-danger' onClick={() => toggleFavorite(movie)}>
+                    {favorites.some(fav => fav.id === movie.id) ? 'Unlike' : 'Like'}
+                  </button>
                   </div>
-             
-              </SwiperSlide>
+                </div>
+              </div>
+            </SwiperSlide>
             ))
           ) : (
             <p>No movies found.</p>
@@ -130,28 +128,28 @@ export default function PopularMovies() {
         <div className="row">
           {filteredMovies.map(movie => (
             <div className='col-6 col-sm-4 col-md-2 mb-4' key={movie.id}>
-              
-                <div className="card card-info">
-                  <img 
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
-                    className="card-img-top" 
-                    alt={movie.title} 
-                  />
-                  <div className="card-body text-center">
-                    <p className='rating'>{movie.vote_average.toFixed(1)}</p>
-                    <h5 className="card-title fs-6 w-100 text-center pt-2">{movie.title}</h5>
-                    <div className='button-container'>
-                    <Link to={`/movie/${movie.id}`}>
-                      <button className='btn btn-success'>details</button>
+            <div className="card card-info film-card h-100">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                className="card-img-top"
+                alt={movie.title}
+              />
+              <div className=" text-center d-flex flex-column">
+                <p className='rating'>{movie.vote_average.toFixed(1)}</p>
+                <div className='info w-100 d-flex flex-column justify-content-between flex-grow-1'>
+                  <h5 className="card-title pt-2">{movie.title}</h5>
+                  <div className='d-flex align-items-center gap-3 mt-auto'>
+                    <Link to={`/movie/${movie.id}`} className="w-100">
+                      <button className='btn btn-success w-100 d-flex justify-content-center align-items-center fs-7'>details</button>
                     </Link>
-                    <button className='btn btn-danger' onClick={() => toggleFavorite(movie)}>
+                    <button className='btn btn-danger d-flex justify-content-center align-items-center' onClick={() => toggleFavorite(movie)}>
                       {favorites.some(fav => fav.id === movie.id) ? 'Unlike' : 'Like'}
                     </button>
-                    </div>
                   </div>
                 </div>
-             
+              </div>
             </div>
+          </div>
           ))}
         </div>
       )}

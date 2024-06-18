@@ -56,33 +56,33 @@ body {
   }
 }
 
-@media screen and (min-width: 100px) {
-  /* font at xs */
-  html {
-    font-size: 10px !important;
-  }
-}
+// @media screen and (min-width: 100px) {
+//   /* font at xs */
+//   html {
+//     font-size: 10px !important;
+//   }
+// }
 
-@media screen and (min-width: 768px) {
-  /* font at sm */
-  html {
-    font-size: 12px !important;
-  }
-}
+// @media screen and (min-width: 768px) {
+//   /* font at sm */
+//   html {
+//     font-size: 12px !important;
+//   }
+// }
 
-@media screen and (min-width: 991px) {
-  /* font at md */
-  html {
-    font-size: 14px !important;
-  }
-}
+// @media screen and (min-width: 991px) {
+//   /* font at md */
+//   html {
+//     font-size: 14px !important;
+//   }
+// }
 
-@media screen and (min-width: 1200px) {
-  /* font at lg */
-  html {
-    font-size: 16px !important;
-  }
-}
+// @media screen and (min-width: 1200px) {
+//   /* font at lg */
+//   html {
+//     font-size: 16px !important;
+//   }
+// }
 .card-info{
   color: white;
   background-color: transparent !important;
@@ -134,3 +134,84 @@ swiper-button-next{
 .container{
 padding: 0 10px !important;
 }
+.icon {
+  margin: auto;
+}
+
+.found {
+  color: rgba(240, 248, 255, 0.438);
+}
+
+.film-card {
+  height: 100%; /* لضمان أن يكون طول الكاردات متساويًا */
+  border: none; /* إزالة الحدود إذا كانت موجودة */
+  box-shadow: none; /* إزالة الظل إذا كان موجودًا */
+}
+
+.film-card img {
+  height: 260px;
+  object-fit: cover;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background: none; /* إزالة الخلفية */
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  background: none; /* إزالة الخلفية */
+  padding: 10px; /* إضافة بعض التباعد الداخلي */
+}
+
+.rating {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px; /* إضافة مساحة بين التقييم والعنوان */
+}
+
+.card-title {
+  margin-top: 10px;
+  font-size: 1.1em;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.btn-danger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.gap-3 {
+  gap: 1rem;
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+// .card-img-top{
+//   height: 260px !important;
+// }

@@ -96,28 +96,27 @@ export default function NowPlayingMovies() {
         >
           {Array.isArray(nowPlayingMovies) && nowPlayingMovies.length > 0 ? (
             filteredMovies.map(movie => (
-              <SwiperSlide  key={movie.id}>
-               
-                  <div className="card card-info wow animate__animated animate__fadeInUpBig">
-                    <img 
-                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
-                      className="card-img-top" 
-                      alt={movie.title} 
-                    />
-                    <div className="card-body text-center">
-                      <p className='rating'>{movie.vote_average.toFixed(1)}</p>
-                      <h5 className="card-title fs-6 w-100 text-center pt-2">{movie.title}</h5>
-                      <div className='button-container'>
-                    <Link to={`/movie/${movie.id}`}>
-                      <button className='btn btn-success'>details</button>
-                    </Link>
-                    <button className='btn btn-danger' onClick={() => toggleFavorite(movie)}>
-                      {favorites.some(fav => fav.id === movie.id) ? 'Unlike' : 'Like'}
-                    </button>
-                    </div>
-                    </div>
+              <SwiperSlide className='h-auto col-6 col-sm-4 col-md-2 mb-4' key={movie.id}>
+              <div className="card card-info wow animate__animated animate__fadeInUpBig">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  className="card-img-top"
+                  alt={movie.title}
+                />
+                <div className="card-body text-center w-100">
+                  <p className='rating'>{movie.vote_average.toFixed(1)}</p>
+                  <h5 className="card-title pt-2">{movie.title}</h5>
+                  <div className='button-container'>
+                  <Link to={`/movie/${movie.id}`}>
+                    <button className='btn btn-success'>details</button>
+                  </Link>
+                   <button className='btn btn-danger' onClick={() => toggleFavorite(movie)}>
+                    {favorites.some(fav => fav.id === movie.id) ? 'Unlike' : 'Like'}
+                  </button>
                   </div>
-              </SwiperSlide>
+                </div>
+              </div>
+            </SwiperSlide>
             ))
           ) : (
             <p>No movies found.</p>
@@ -128,27 +127,27 @@ export default function NowPlayingMovies() {
           {filteredMovies.map(movie => (
             <div className='col-6 col-sm-4 col-md-2 mb-4' key={movie.id}>
               
-                <div className="card card-info">
-                  <img 
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
-                    className="card-img-top" 
-                    alt={movie.title} 
-                  />
-                  <div className="card-body text-center">
-                    <p className='rating'>{movie.vote_average.toFixed(1)}</p>
-                    <h5 className="card-title fs-6 w-100 text-center pt-2">{movie.title}</h5>
-                    <div className='button-container'>
-                    <Link to={`/movie/${movie.id}`}>
-                      <button className='btn btn-success'>details</button>
-                    </Link>
-                    <button className='btn btn-danger' onClick={() => toggleFavorite(movie)}>
-                      {favorites.some(fav => fav.id === movie.id) ? 'Unlike' : 'Like'}
-                    </button>
-                    </div>
-                  </div>
+            <div className="card card-info">
+              <img 
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
+                className="card-img-top" 
+                alt={movie.title} 
+              />
+              <div className="card-body text-center">
+                <p className='rating'>{movie.vote_average.toFixed(1)}</p>
+                <h5 className="card-title fs-6 w-100 text-center pt-2">{movie.title}</h5>
+                <div className='button-container'>
+                <Link to={`/movie/${movie.id}`}>
+                  <button className='btn btn-success'>details</button>
+                </Link>
+                <button className='btn btn-danger' onClick={() => toggleFavorite(movie)}>
+                  {favorites.some(fav => fav.id === movie.id) ? 'Unlike' : 'Like'}
+                </button>
                 </div>
-            
+              </div>
             </div>
+        
+        </div>
           ))}
         </div>
       )}

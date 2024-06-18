@@ -127,27 +127,29 @@ export default function UpcomingMovies() {
       ) : (
         <div className="row">
           {filteredMovies.map(movie => (
-            <div className='col-6 col-sm-4 col-md-2 mb-4' key={movie.id}>
-              <div>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  className="card-img-top"
-                  alt={movie.title}
-                />
-                <div className="card-body text-center">
-                  <p className='rating'>{movie.vote_average.toFixed(1)}</p>
-                  <h5 className="card-title pt-2 my-3">{movie.title}</h5>
-                  <div className='button-container'>
-                    <Link to={`/movie/${movie.id}`}>
-                      <button className='btn btn-success'>details</button>
-                    </Link>
-                    <button className='btn btn-danger' onClick={() => toggleFavorite(movie)}>
-                      {favorites.some(fav => fav.id === movie.id) ? 'Unlike' : 'Like'}
-                    </button>
-                    </div>
+          <div className='col-6 col-sm-4 col-md-2 mb-4' key={movie.id}>
+              
+            <div className="card card-info">
+              <img 
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
+                className="card-img-top" 
+                alt={movie.title} 
+              />
+              <div className="card-body text-center">
+                <p className='rating'>{movie.vote_average.toFixed(1)}</p>
+                <h5 className="card-title fs-6 w-100 text-center pt-2">{movie.title}</h5>
+                <div className='button-container'>
+                <Link to={`/movie/${movie.id}`}>
+                  <button className='btn btn-success'>details</button>
+                </Link>
+                <button className='btn btn-danger' onClick={() => toggleFavorite(movie)}>
+                  {favorites.some(fav => fav.id === movie.id) ? 'Unlike' : 'Like'}
+                </button>
                 </div>
               </div>
             </div>
+        
+        </div>
           ))}
         </div>
       )}
