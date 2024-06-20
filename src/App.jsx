@@ -28,7 +28,7 @@ function App() {
           <Route path="movie/:id" element={<Details />} />
           <Route path="*" element={"Page 404"} />
         </Routes>
-        <Footer />
+        <Footer className="footer"/>
         <Outlet />
       </BrowserRouter>
       </RecoilRoot>

@@ -59,6 +59,7 @@ export default function Details() {
         <div className="container w-100">
           <div className="row align-items-center">
             <div className="box-left p-0 col-lg-6 col-md-12 wow animate__animated animate__fadeInUpBig animate__slow 1s">
+              
               <strong className="rating-details">
                 {" "}
                 {movie.vote_average.toFixed(1)}{" "}
@@ -68,7 +69,7 @@ export default function Details() {
                 alt={movie.title}
               />
             </div>
-            <div className="col-lg-6 col-md-12 p-5 info wow animate__animated animate__fadeInDownBig animate__slow 1s">
+            <div className="col-lg-6 col-md-12 p-2 mt-3 info wow animate__animated animate__fadeInDownBig animate__slow 1s">
               <h2 className="fs-1 text-warning">{movie.title}</h2>
               <p className="py-3">{movie.overview}</p>
               <p className="py-3">

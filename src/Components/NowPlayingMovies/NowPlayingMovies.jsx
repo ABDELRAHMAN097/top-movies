@@ -125,7 +125,7 @@ export default function NowPlayingMovies() {
             </SwiperSlide>
             ))
           ) : (
-            <p>No movies found.</p>
+            <p className='found'>No movies found.</p>
           )}
         </Swiper>
       ) : (
@@ -158,7 +158,7 @@ export default function NowPlayingMovies() {
         </div>
       )}
       {nowPlayingMovies.length > 7 && (
-        <button className="btn btn-primary mt-3" onClick={() => setShowAll(!showAll)}>
+        <button className="btn btn-primary mb-3" onClick={() => setShowAll(!showAll)}>
           {showAll ? 'Show Less' : 'Show More'}
         </button>
       )}

@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import "./Upcoming.scss"
+import "./Upcoming.scss";
 import { favoriteMoviesState } from '../../Store/Fave';
 import { useRecoilState } from 'recoil';
 import { WOW } from "wowjs";
@@ -126,7 +126,7 @@ export default function UpcomingMovies() {
             </SwiperSlide>
             ))
           ) : (
-            <p>No movies found.</p>
+            <p className='found'>No movies found.</p>
           )}
         </Swiper>
       ) : (
@@ -159,7 +159,7 @@ export default function UpcomingMovies() {
         </div>
       )}
       {upcomingMovies.length > 7 && (
-        <button className="btn btn-primary" onClick={() => setShowAll(!showAll)}>
+        <button className="btn btn-primary mb-3" onClick={() => setShowAll(!showAll)}>
           {showAll ? 'Show Less' : 'Show More'}
         </button>
       )}

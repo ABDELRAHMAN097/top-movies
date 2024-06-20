@@ -27,10 +27,11 @@ img:hover {
   z-index: 1;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .box-left {
-    text-align: center;
+    text-align: flex-start;
     justify-content: flex-start;
+    align-items: flex-start;
     margin-bottom: 20px;
   }
 }
@@ -67,7 +68,7 @@ img:hover {
 @media screen and (max-width: 767px) {
   .col-md-12  {
     padding: 0 68px;
-    width: 100%;
-    margin-top: 20px;
+    width: 90%;
+    margin: auto;
   }
 }

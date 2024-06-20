@@ -133,6 +133,13 @@ swiper-button-next{
 }
 .container{
 padding: 0 10px !important;
+min-height: 90vh;
+
+}
+@media (max-width: 768px) {
+  .container {
+    min-height: auto;
+  }
 }
 .icon {
   margin: auto;
@@ -222,4 +229,9 @@ padding: 0 10px !important;
     padding: 2px !important;
     font-size: 14px !important;
   }
+}
+.footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
 }
