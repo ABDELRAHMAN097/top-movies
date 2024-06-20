@@ -47,7 +47,7 @@ export default function Contact() {
         </div>
      </div>
      <div className='col-lg-6 col-md-12'>
-     <form ref={form} onSubmit={sendEmail} className="wow animate__animated animate__fadeInRight">
+     <form ref={form} onSubmit={sendEmail} className="wow animate__animated animate__fadeInRight ">
           {/* name && email */}
           <div className="name-email">
             <div className="name">
