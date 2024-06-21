@@ -1,3 +1,11 @@
+.form-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    min-height: 80vh;
+}
 form{
     border: 1px solid rgb(159, 189, 230);
     padding: 20px 20px 20px 20px;

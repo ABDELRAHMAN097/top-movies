@@ -32,22 +32,16 @@ export default function Contact() {
     e.target.reset();
   };
   return (
-    <div className='w-100 container'>
+    <div className='w-100  container'>
      <div className='d-flex align-items-center gap-2 my-3 wow animate__animated animate__jello animate__delay-1s 1s	animate__slow	0.5s'>
      <Link className='fs-3 text-white' to="/">Home</Link>
       <span className='fs-3 '>/</span>
       <h3>Contact</h3>
      </div>
      <div className='row w-100'>
-     <div className='col-lg-6 col-md-12 boder-top-white wow animate__animated animate__fadeInLeft'>
-        <div className='contact-photo w-100 '>
-        <div className='over d-flex align-items-end'>
-          <h3 className='p-3'>We’re excited to hear from you! Whether you have a question, need support, or just want to share your thoughts, we’re here to help.</h3>
-        </div>
-        </div>
-     </div>
-     <div className='col-lg-6 col-md-12'>
-     <form ref={form} onSubmit={sendEmail} className="wow animate__animated animate__fadeInRight ">
+    
+     <div className='col-12'>
+     <form ref={form} onSubmit={sendEmail} className="mt-5 ml-5 wow animate__animated animate__fadeInRight ">
           {/* name && email */}
           <div className="name-email">
             <div className="name">
@@ -85,6 +79,7 @@ export default function Contact() {
           <button className='btn btn-info' type="submit">Send <BsSendFill /></button>
       </form>
      </div>
+
     </div>
     </div>
   )
