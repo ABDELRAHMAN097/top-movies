@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import emailjs from "emailjs-com";
 import { WOW } from "wowjs";
 import { BsSendFill } from "react-icons/bs";
-import photomove from '../../assets/photoMov.jpg'
 
 export default function Contact() {
   useEffect(() => {
@@ -33,7 +32,7 @@ export default function Contact() {
   };
   return (
     <div className='w-100  container m-auto'>
-     <div className='d-flex align-items-center gap-2 my-3 wow animate__animated animate__jello animate__delay-1s 1s	animate__slow	0.5s'>
+     <div className='d-flex align-items-center gap-2 mt-5 wow animate__animated animate__jello animate__delay-1s 1s	animate__slow	0.5s'>
      <Link className='fs-3 text-white' to="/">Home</Link>
       <span className='fs-3 '>/</span>
       <h3>Contact</h3>
@@ -41,7 +40,7 @@ export default function Contact() {
      <div className='row w-100'>
     
      <div className='col-12 w-100 m-auto'>
-     <form ref={form} onSubmit={sendEmail} className="mt-5 ml-5 wow animate__animated animate__fadeInRight ">
+     <form ref={form} onSubmit={sendEmail} className="mt-5  wow animate__animated animate__fadeInRight ">
           {/* name && email */}
           <div className="name-email">
             <div className="name">
