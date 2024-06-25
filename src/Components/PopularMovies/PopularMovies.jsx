@@ -60,7 +60,7 @@ export default function PopularMovies() {
   }, []);
 
   return (
-    <div className="container pt-3">
+    <div className=" pt-3">
        <div className='d-flex align-items-center gap-2 my-3 wow animate__animated animate__jello animate__delay-1s 1s	animate__slow	0.5s'>
      <Link className='fs-3 text-white' to="/">Home</Link>
       <span className='fs-3 '>/</span>

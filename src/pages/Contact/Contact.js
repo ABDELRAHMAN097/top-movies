@@ -32,7 +32,7 @@ export default function Contact() {
     e.target.reset();
   };
   return (
-    <div className='w-100  container'>
+    <div className='w-100  container m-auto'>
      <div className='d-flex align-items-center gap-2 my-3 wow animate__animated animate__jello animate__delay-1s 1s	animate__slow	0.5s'>
      <Link className='fs-3 text-white' to="/">Home</Link>
       <span className='fs-3 '>/</span>
@@ -40,7 +40,7 @@ export default function Contact() {
      </div>
      <div className='row w-100'>
     
-     <div className='col-12'>
+     <div className='col-12 w-100 m-auto'>
      <form ref={form} onSubmit={sendEmail} className="mt-5 ml-5 wow animate__animated animate__fadeInRight ">
           {/* name && email */}
           <div className="name-email">

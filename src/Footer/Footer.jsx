@@ -3,7 +3,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaWhatsappSquare } from "react-icons/fa";
 import { FaSquareGithub } from "react-icons/fa6";
 import { AiOutlineGlobal } from "react-icons/ai";
-
+import './Footer.scss'
 export default function Footer() {
     const handellinkedin = () => {
         window.open(

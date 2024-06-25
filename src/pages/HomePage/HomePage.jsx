@@ -108,7 +108,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className="container w-100 p-0 mt-5">
+      <div className="container w-100 mt-5">
         <div className="pt-3">
           <h2 className="my-3 wow animate__animated animate__jello animate__delay-1s 1s animate__slow 0.5s">Search Movies</h2>
           <div className="input-group mb-3">
