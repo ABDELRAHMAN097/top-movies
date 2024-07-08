@@ -93,18 +93,7 @@ export default function HomePage() {
           </div>
         </Parallax>
         <div className='filter w-100'>
-          <Link to="/UpcomingMovies">  
-            <button className='btn btn-primary wow animate__animated  animate__bounceInDown animate__delay-1s 1s'>Upcoming</button>
-          </Link>
-          <Link to="/PopularMovies"> 
-            <button className='btn btn-primary wow animate__animated  animate__bounceInDown animate__delay-2s 2s'>Popular</button>
-          </Link>
-          <Link to="/TopRatedMovies">
-            <button className='btn btn-primary wow animate__animated  animate__bounceInDown animate__delay-3s 3s'>TopRated</button>
-          </Link>
-          <Link to="/NowPlayingMovies"> 
-            <button className='btn btn-primary wow animate__animated  animate__bounceInDown animate__delay-2s 2s'>NowPlaying</button>
-          </Link>
+         
         </div>
       </div>
 
