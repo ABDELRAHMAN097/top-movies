@@ -12,7 +12,7 @@ import axios from 'axios';
 import { favoriteMoviesState } from '../../Store/Fave';
 import { useRecoilState } from 'recoil';
 import { WOW } from "wowjs";
-import { RingLoader } from "react-spinners";
+import { DotLoader  } from "react-spinners";
 
 
 export default function HomePage() {
@@ -72,7 +72,7 @@ export default function HomePage() {
      
      {loading && ( 
       <div className="loading-overlay">
-        <RingLoader color={"rgb(255, 0, 0)"} loading={loading} size={250} className="loading-spinner" />
+        <DotLoader  color={"rgb(255, 0, 0)"} loading={loading} size={250} className="loading-spinner" />
       </div>
     )}
 

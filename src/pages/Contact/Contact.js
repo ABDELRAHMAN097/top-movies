@@ -1,11 +1,17 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './Contact.scss'
 import { Link } from 'react-router-dom'
 import emailjs from "emailjs-com";
 import { WOW } from "wowjs";
 import { BsSendFill } from "react-icons/bs";
+import { DotLoader  } from "react-spinners";
+
 
 export default function Contact() {
+const [loading, setLoading] = useState(true);
+setTimeout(() => {
+  setLoading(false);
+}, 2000);
   useEffect(() => {
     const wow = new WOW({ live: false });
     wow.init();
@@ -32,6 +38,11 @@ export default function Contact() {
   };
   return (
     <div className='w-100  container m-auto'>
+      {loading && ( 
+      <div className="loading-overlay">
+        <DotLoader  color={"rgb(255, 0, 0)"} loading={loading} size={250} className="loading-spinner" />
+      </div>
+    )}
      <div className='d-flex align-items-center gap-2 mt-5 wow animate__animated animate__jello animate__delay-1s 1s	animate__slow	0.5s'>
      <Link className='fs-3 text-white' to="/">Home</Link>
       <span className='fs-3 '>/</span>

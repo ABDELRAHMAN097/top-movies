@@ -9,6 +9,8 @@ import 'swiper/css/pagination';
 import { favoriteMoviesState } from '../../Store/Fave';
 import { useRecoilState } from 'recoil';
 import { WOW } from "wowjs";
+import { DotLoader  } from "react-spinners";
+
 
 export default function NowPlayingMovies() {
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
@@ -17,9 +19,11 @@ export default function NowPlayingMovies() {
   const jwtToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMWJlZTViMGFiMmU1Y2Y2MmVjNzc3ZThkYjYwNTdmZSIsInN1YiI6IjY2NTVjNThlMzJjNGIwNTM1NWEzNmE5ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.jFE5NZQk4EhObnSNIoVFWftCLNoLO7OOsc-z7baeZ7Y';
   const baseUrl = 'https://api.themoviedb.org/3';
   const nowPlayingMoviesEndpoint = `${baseUrl}/movie/now_playing`;
+  const [loading, setLoading] = useState(false);
   
 
   useEffect(() => {
+    setLoading(true);
     const fetchMovies = async (endpoint, setter) => {
       try {
         const response = await axios.get(endpoint, {
@@ -27,13 +31,15 @@ export default function NowPlayingMovies() {
             Authorization: `Bearer ${jwtToken}`
           },
           params: {
-            language: 'en-US'
+            language: 'en-US' 
           }
         });
+        setLoading(false);
         if (response.data && response.data.results) {
           setter(response.data.results);
         } else {
           setter([]);
+          setLoading(false);
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -60,6 +66,11 @@ export default function NowPlayingMovies() {
   }, []);
   return (
     <div className="pt-3">
+       {loading && ( 
+      <div className="loading-overlay">
+        <DotLoader  color={"rgb(255, 0, 0)"} loading={loading} size={250} className="loading-spinner" />
+      </div>
+    )}
        <div className='d-flex align-items-center gap-2 my-3 wow animate__animated animate__jello animate__delay-1s 1s	animate__slow	0.5s'>
      <Link className='fs-3 text-white' to="/">Home</Link>
       <span className='fs-3 '>/</span>

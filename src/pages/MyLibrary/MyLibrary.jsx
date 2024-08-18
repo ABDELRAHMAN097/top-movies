@@ -1,21 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './MyLibrary.scss';
 import { useRecoilState } from 'recoil';
 import { favoriteMoviesState } from '../../Store/Fave';
 import { ImBin } from "react-icons/im";
+import { DotLoader  } from "react-spinners";
 
 export default function MyLibrary() {
   const [favorites, setFavorites] = useRecoilState(favoriteMoviesState);
+  const [loading, setLoading] = useState(true);
+
   const removeFavorite = (movie) => {
     setFavorites(prevFavorites => {
       const updatedFavorites = prevFavorites.filter(fav => fav.id !== movie.id);
       return updatedFavorites;
     });
   };
-
+  setTimeout(() => {
+    setLoading(false);
+  }, 2000);
+  
   return (
     <div className="container pt-3">
+       {loading && ( 
+      <div className="loading-overlay">
+        <DotLoader  color={"rgb(255, 0, 0)"} loading={loading} size={250} className="loading-spinner" />
+      </div>
+    )}
       <div className='d-flex align-items-center gap-2 my-3'>
         <Link className='fs-3 text-white' to="/">Home</Link>
         <span className='fs-3'>/</span>
