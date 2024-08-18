@@ -28,7 +28,7 @@ export default function Footer() {
         );
       };
   return (
-    <div className='d-flex justify-content-between w-100 border-top p-2'>
+    <div className='d-flex justify-content-between w-100 border-top p-2 h-9vh'>
         <p className=' p-2 '>© 2024 Abdelrahman Magdy</p>
         <div className='d-flex justify-content-between gap-3 p-2'>
         <FaLinkedin className='fs-4' onClick={handellinkedin} />
