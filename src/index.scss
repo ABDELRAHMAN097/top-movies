@@ -55,7 +55,25 @@ body {
     // }
   }
 }
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%; 
+  background-color: black; 
+  z-index: 1000; 
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
 
+.loading-spinner {
+  background-color: rgb(0, 0, 0); 
+  font-size: 180px;
+  width: 90%;
+  height: 90%;
+}
 // @media screen and (min-width: 100px) {
 //   /* font at xs */
 //   html {

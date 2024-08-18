@@ -12,19 +12,20 @@ import axios from 'axios';
 import { favoriteMoviesState } from '../../Store/Fave';
 import { useRecoilState } from 'recoil';
 import { WOW } from "wowjs";
-import { InfinitySpin } from 'react-loader-spinner';
+import { RingLoader } from "react-spinners";
+
 
 export default function HomePage() {
   const [favorites, setFavorites] = useRecoilState(favoriteMoviesState);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const [error, setError] = useState(null); // State to handle errors
-  const [loading, setLoading] = useState(false); // State to handle loading
-  const [initialLoading, setInitialLoading] = useState(true); // State to handle initial loading
-  const apiKey = "11bee5b0ab2e5cf62ec777e8db6057fe"
+  const [error, setError] = useState(null);
+  const apiKey = "11bee5b0ab2e5cf62ec777e8db6057fe";
+  const [loading, setLoading] = useState(false);
+
 
   const handleSearch = async () => {
-    setLoading(true); // Start loading
+    setLoading(true); // Start loading before the API call
     setError(null); // Reset any previous errors
     try {
       const response = await axios.get('https://api.themoviedb.org/3/search/movie', {
@@ -40,7 +41,7 @@ export default function HomePage() {
       setError(error); // Set error state to handle and display error messages
       setSearchResults([]); // Clear search results on error
     } finally {
-      setLoading(false); // End loading
+      setLoading(false); // End loading after the API call completes
     }
   };
 
@@ -49,6 +50,7 @@ export default function HomePage() {
   };
 
   const toggleFavorite = (movie) => {
+    setLoading(true);
     setFavorites(prevFavorites => {
       if (prevFavorites.some(fav => fav.id === movie.id)) {
         return prevFavorites.filter(fav => fav.id !== movie.id);
@@ -56,32 +58,24 @@ export default function HomePage() {
         return [...prevFavorites, movie];
       }
     });
+    setLoading(false);
   };
 
   useEffect(() => {
     const wow = new WOW({ live: false });
     wow.init();
-    // Simulate initial loading (e.g., fetching initial data)
-    setTimeout(() => {
-      setInitialLoading(false);
-    }, 2000); // Adjust the timeout as needed
   }, []);
 
-  if (initialLoading) {
-    return (
-      <div className="text-center my-5">
-        <InfinitySpin
-          visible={true}
-          width="200"
-          color="#111"
-          ariaLabel="infinity-spin-loading"
-        />
-      </div>
-    );
-  }
 
   return (
     <div className="home text-start w-100">
+     
+     {loading && ( 
+      <div className="loading-overlay">
+        <RingLoader color={"rgb(255, 0, 0)"} loading={loading} size={250} className="loading-spinner" />
+      </div>
+    )}
+
       <div className='hero w-100 text-center'>
         <Nav className='nav' />
         <Parallax
@@ -113,48 +107,37 @@ export default function HomePage() {
             </button>
           </div>
 
-          {loading ? (
-            <div className="text-center my-5">
-              <InfinitySpin
-                visible={true}
-                width="200"
-                color="#111"
-                ariaLabel="infinity-spin-loading"
-              />
-            </div>
-          ) : (
-            <div className="row">
-              {error ? (
-                <p>Error fetching search results. Please try again later.</p>
-              ) : searchResults.length > 0 ? (
-                searchResults.map(movie => (
-                  <div className='col-6 col-sm-4 col-md-2 mb-4' key={movie.id}>
-                    <div className="card card-info">
-                      <img 
-                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
-                        className="card-img-top" 
-                        alt={movie.title} 
-                      />
-                      <div className="card-body text-center">
-                        <p className='rating'>{movie.vote_average.toFixed(1)}</p>
-                        <h5 className="card-title fs-6 w-100 text-center pt-2">{movie.title}</h5>
-                        <div className='button-container'>
-                          <Link to={`/movie/${movie.id}`}>
-                            <button className='btn btn-success'>details</button>
-                          </Link>
-                          <button className='btn btn-danger' onClick={() => toggleFavorite(movie)}>
-                            {favorites.some(fav => fav.id === movie.id) ? 'Unlike' : 'Like'}
-                          </button>
-                        </div>
+          <div className="row">
+            {error ? (
+              <p>Error fetching search results. Please try again later.</p>
+            ) : searchResults.length > 0 ? (
+              searchResults.map(movie => (
+                <div className='col-6 col-sm-4 col-md-2 mb-4' key={movie.id}>
+                  <div className="card card-info">
+                    <img 
+                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
+                      className="card-img-top" 
+                      alt={movie.title} 
+                    />
+                    <div className="card-body text-center">
+                      <p className='rating'>{movie.vote_average.toFixed(1)}</p>
+                      <h5 className="card-title fs-6 w-100 text-center pt-2">{movie.title}</h5>
+                      <div className='button-container'>
+                        <Link to={`/movie/${movie.id}`}>
+                          <button className='btn btn-success'>details</button>
+                        </Link>
+                        <button className='btn btn-danger' onClick={() => toggleFavorite(movie)}>
+                          {favorites.some(fav => fav.id === movie.id) ? 'Unlike' : 'Like'}
+                        </button>
                       </div>
                     </div>
                   </div>
-                ))
-              ) : (
-                <p className='found'>No movies found.</p>
-              )}
-            </div>
-          )}
+                </div>
+              ))
+            ) : (
+              <p className='found'>No movies found.</p>
+            )}
+          </div>
         </div>
 
         <UpcomingMovies />
